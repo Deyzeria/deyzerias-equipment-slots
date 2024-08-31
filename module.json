@@ -1,0 +1,63 @@
+{
+  "id": "deyzerias-equipment-slots",
+  "title": "Deyzeria's Equipment Slots",
+  "version": "1.0.0",
+  "compatibility": {
+    "minimum": "12",
+    "verified": "12"
+  },
+  "relationships": {
+    "systems": [
+      {
+        "id": "dnd5e",
+        "type": "system",
+        "compatibility": {}
+      }
+    ],
+    "recommends": [
+      {
+        "id": "tidy5e-sheet",
+        "type": "module",
+        "compatibility": {}
+      }
+    ]
+  },
+  "description": "DnD5e module which adds basic equipment slots on top of the existing 5e armor, which don't provide AC. Adds (For each armor type + clothing)- hats, gloves, legs, boots, as well as accessories- rings, necklaces, face and back slots.",
+  "authors": [
+    {
+      "name": "Deyzeria",
+      "url": "https://github.com/Deyzeria",
+      "discord": "Deyzeria",
+      "flags": {}
+    }
+  ],
+  "esmodules": [
+    "/deyzeria-equipment-slots.mjs"
+  ],
+  "packs": [
+    {
+      "name": "example-equipment-slots",
+      "label": "Example Equipment Slots",
+      "path": "packs/example-equipment-slots",
+      "type": "Item",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "system": "dnd5e",
+      "flags": {}
+    },
+    {
+      "name": "srd-converted-equipment",
+      "label": "SRD Converted Equipment",
+      "path": "packs/srd-converted-equipment",
+      "type": "Item",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "system": "dnd5e",
+      "flags": {}
+    }
+  ]
+}
