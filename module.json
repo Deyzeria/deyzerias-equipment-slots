@@ -47,5 +47,8 @@
       "system": "dnd5e",
       "flags": {}
     }
-  ]
+  ],
+  "manifest": "https://raw.githubusercontent.com/Deyzeria/deyzerias-equipment-slots/master/module.json",
+  "url": "https://github.com/Deyzeria/deyzerias-equipment-slots",
+  "download": "https://github.com/Deyzeria/deyzerias-equipment-slots/archive/refs/heads/main.zip"
 }
