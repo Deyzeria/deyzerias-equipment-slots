@@ -14,22 +14,22 @@ ExtraEquipmentSlots.ToProcess = [];
 
 ExtraEquipmentSlots.DefaultEquipmentSlots = {
   clothhat: {
-    label: "Clothings Hat",
+    label: "Hat",
     prof: true,
     category: "helmet"
   },
   clothpants: {
-    label: "Clothing Pants",
+    label: "Pants",
     prof: true,
     category: "pants"
   },
   clothhands: {
-    label: "Clothing Gloves",
+    label: "Gloves",
     prof: true,
     category: "gloves"
   },
   clothboots: {
-    label: "Clothing Boots",
+    label: "Boots",
     prof: true,
     category: "boots"
   },
@@ -46,6 +46,16 @@ ExtraEquipmentSlots.DefaultEquipmentSlots = {
   },
   face: {
     label: "Face",
+    prof: true,
+    category: "extraslots"
+  },
+  belt: {
+    label: "Belt",
+    prof: true,
+    category: "extraslots"
+  },
+  bracers: {
+    label: "Bracers",
     prof: true,
     category: "extraslots"
   },

@@ -36,18 +36,6 @@
   ],
   "packs": [
     {
-      "name": "example-equipment-slots",
-      "label": "Example Equipment Slots",
-      "path": "packs/example-equipment-slots",
-      "type": "Item",
-      "ownership": {
-        "PLAYER": "OBSERVER",
-        "ASSISTANT": "OWNER"
-      },
-      "system": "dnd5e",
-      "flags": {}
-    },
-    {
       "name": "srd-converted-equipment",
       "label": "SRD Converted Equipment",
       "path": "packs/srd-converted-equipment",
