@@ -3,127 +3,127 @@ const ExtraEquipmentSlots = {};
 ExtraEquipmentSlots.Final = [];
 
 ExtraEquipmentSlots.DefaultEquipmentCategories = {
-  extraslots: "Extra Slots",
-  helmet: "Helmet",
-  gloves: "Gloves",
-  pants: "Pants",
-  boots: "Boots"
+  extraslots: "EQUIPMENTSLOTS.CATEGORY.extraslots",
+  helmet: "EQUIPMENTSLOTS.CATEGORY.helmet",
+  gloves: "EQUIPMENTSLOTS.CATEGORY.gloves",
+  pants: "EQUIPMENTSLOTS.CATEGORY.pants",
+  boots: "EQUIPMENTSLOTS.CATEGORY.boots"
 }
 
 ExtraEquipmentSlots.ToProcess = [];
 
 ExtraEquipmentSlots.DefaultEquipmentSlots = {
   clothhat: {
-    label: "Hat",
+    label: "EQUIPMENTSLOTS.ITEM.clothhat",
     prof: true,
     category: "helmet"
   },
   clothpants: {
-    label: "Pants",
+    label: "EQUIPMENTSLOTS.ITEM.clothpants",
     prof: true,
     category: "pants"
   },
   clothhands: {
-    label: "Gloves",
+    label: "EQUIPMENTSLOTS.ITEM.clothhands",
     prof: true,
     category: "gloves"
   },
   clothboots: {
-    label: "Boots",
+    label: "EQUIPMENTSLOTS.ITEM.clothboots",
     prof: true,
     category: "boots"
   },
 
   ring: {
-    label: "Ring",
+    label: "EQUIPMENTSLOTS.ITEM.ring",
     prof: true,
     category: "extraslots"
   },
   neck: {
-    label: "Necklace",
+    label: "EQUIPMENTSLOTS.ITEM.neck",
     prof: true,
     category: "extraslots"
   },
   face: {
-    label: "Face",
+    label: "EQUIPMENTSLOTS.ITEM.face",
     prof: true,
     category: "extraslots"
   },
   belt: {
-    label: "Belt",
+    label: "EQUIPMENTSLOTS.ITEM.belt",
     prof: true,
     category: "extraslots"
   },
   bracers: {
-    label: "Bracers",
+    label: "EQUIPMENTSLOTS.ITEM.bracers",
     prof: true,
     category: "extraslots"
   },
   back: {
-    label: "Back",
+    label: "EQUIPMENTSLOTS.ITEM.back",
     prof: true,
     category: "extraslots"
   },
 
   lighthat: {
-    label: "Light Helmet",
+    label: "EQUIPMENTSLOTS.ITEM.lighthat",
     prof: "lgt",
     category: "helmet"
   },
   lightpants: {
-    label: "Light Pants",
+    label: "EQUIPMENTSLOTS.ITEM.lightpants",
     prof: "lgt",
     category: "pants"
   },
   lighthands: {
-    label: "Light Gloves",
+    label: "EQUIPMENTSLOTS.ITEM.lighthands",
     prof: "lgt",
     category: "gloves"
   },
   lightboots: {
-    label: "Light Boots",
+    label: "EQUIPMENTSLOTS.ITEM.lightboots",
     prof: "lgt",
     category: "boots"
   },
 
   mediumhat: {
-    label: "Medium Helmet",
+    label: "EQUIPMENTSLOTS.ITEM.mediumhat",
     prof: "med",
     category: "helmet"
   },
   mediumpants: {
-    label: "Medium Pants",
+    label: "EQUIPMENTSLOTS.ITEM.mediumpants",
     prof: "med",
     category: "pants"
   },
   mediumhands: {
-    label: "Medium Gloves",
+    label: "EQUIPMENTSLOTS.ITEM.mediumhands",
     prof: "med",
     category: "gloves"
   },
   mediumboots: {
-    label: "Medium Boots",
+    label: "EQUIPMENTSLOTS.ITEM.mediumboots",
     prof: "med",
     category: "boots"
   },
 
   heavyhat: {
-    label: "Heavy Helmet",
+    label: "EQUIPMENTSLOTS.ITEM.heavyhat",
     prof: "hvy",
     category: "helmet"
   },
   heavypants: {
-    label: "Heavy Pants",
+    label: "EQUIPMENTSLOTS.ITEM.heavypants",
     prof: "hvy",
     category: "pants"
   },
   heavyhands: {
-    label: "Heavy Gloves",
+    label: "EQUIPMENTSLOTS.ITEM.heavyhands",
     prof: "hvy",
     category: "gloves"
   },
   heavyboots: {
-    label: "Heavy Boots",
+    label: "EQUIPMENTSLOTS.ITEM.heavyboots",
     prof: "hvy",
     category: "boots"
   },

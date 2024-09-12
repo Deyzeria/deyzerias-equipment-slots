@@ -29,6 +29,18 @@ Hooks.once("ready", () => {
   ExtraEquipmentSlots.Final = SetupFinalForVisual();
 });
 
+Hooks.once("i18nInit", function () {
+  const toLocalize = ["DefaultEquipmentCategories", "ToProcess"];
+
+  for (let c of toLocalize) {
+    const conf = foundry.utils.getProperty(ExtraEquipmentSlots, c);
+    for (let [k, v] of Object.entries(conf)) {
+      if (v.label) v.label = game.i18n.localize(v.label);
+      if (typeof v === "string") conf[k] = game.i18n.localize(v);
+    }
+  }
+});
+
 // Setups ExtraEquipmentSlots.Final for the further visual display
 function SetupFinalForVisual() {
   const toProcess = ExtraEquipmentSlots.ToProcess;

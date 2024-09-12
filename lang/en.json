@@ -1,0 +1,35 @@
+{
+  "EQUIPMENTSLOTS": {
+    "CATEGORY": {
+      "extraslots": "Extra Slots",
+      "helmet": "Helmet",
+      "gloves": "Gloves",
+      "pants": "Pants",
+      "boots": "Boots"
+    },
+    "ITEM": {
+      "clothhat": "Hat",
+      "clothpants": "Pants",
+      "clothhands": "Gloves",
+      "clothboots": "Boots",
+      "ring": "Ring",
+      "neck": "Necklace",
+      "face": "Face",
+      "belt": "Belt",
+      "bracers": "Bracers",
+      "back": "Back",
+      "lighthat": "Light Helmet",
+      "lightpants": "Light Pants",
+      "lighthands": "Light Gloves",
+      "lightboots": "Light Boots",
+      "mediumhat": "Medium Helmet",
+      "mediumpants": "Medium Pants",
+      "mediumhands": "Medium Gloves",
+      "mediumboots": "Medium Boots",
+      "heavyhat": "Heavy Helmet",
+      "heavypants": "Heavy Pants",
+      "heavyhands": "Heavy Gloves",
+      "heavyboots": "Heavy Boots"
+    }
+  }
+}

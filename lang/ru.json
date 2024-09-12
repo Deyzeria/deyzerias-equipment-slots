@@ -1,0 +1,35 @@
+{
+  "EQUIPMENTSLOTS": {
+    "CATEGORY": {
+      "extraslots": "Дополнительные Слоты",
+      "helmet": "Шлема",
+      "gloves": "Перчатки",
+      "pants": "Штаны",
+      "boots": "Ботинки"
+    },
+    "ITEM": {
+      "clothhat": "Шапка",
+      "clothpants": "Штаны",
+      "clothhands": "Перчатки",
+      "clothboots": "Ботинки",
+      "ring": "Кольцо",
+      "neck": "Ожерелье",
+      "face": "Лицо",
+      "belt": "Пояс",
+      "bracers": "Наручи",
+      "back": "Спина",
+      "lighthat": "Лёгкий Шлем",
+      "lightpants": "Лёгкие Штаны",
+      "lighthands": "Лёгкие Перчатки",
+      "lightboots": "Лёгкие Ботинки",
+      "mediumhat": "Средний Шлем",
+      "mediumpants": "Средние Штаны",
+      "mediumhands": "Средние Перчатки",
+      "mediumboots": "Средние Ботинки",
+      "heavyhat": "Тяжёлый Шлем",
+      "heavypants": "Тяжёлые Штаны",
+      "heavyhands": "Тяжёлые Перчатки",
+      "heavyboots": "Тяжёлые Ботинки"
+    }
+  }
+}
