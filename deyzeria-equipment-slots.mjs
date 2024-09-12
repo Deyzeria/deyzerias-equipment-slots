@@ -31,7 +31,7 @@ Hooks.once("init", () => {
   setupArmor.SetupArmors(ExtraEquipmentSlots.DefaultEquipmentSlots);
 });
 
-Hooks.once("setup", () => {
+Hooks.once("ready", () => {
   ExtraEquipmentSlots.Final = SetupFinalForVisual();
 });
 

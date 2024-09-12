@@ -34,20 +34,6 @@
   "esmodules": [
     "/deyzeria-equipment-slots.mjs"
   ],
-  "packs": [
-    {
-      "name": "srd-converted-equipment",
-      "label": "SRD Converted Equipment",
-      "path": "packs/srd-converted-equipment",
-      "type": "Item",
-      "ownership": {
-        "PLAYER": "OBSERVER",
-        "ASSISTANT": "OWNER"
-      },
-      "system": "dnd5e",
-      "flags": {}
-    }
-  ],
   "manifest": "https://raw.githubusercontent.com/Deyzeria/deyzerias-equipment-slots/master/module.json",
   "url": "https://github.com/Deyzeria/deyzerias-equipment-slots",
   "download": "https://github.com/Deyzeria/deyzerias-equipment-slots/archive/refs/heads/main.zip"
