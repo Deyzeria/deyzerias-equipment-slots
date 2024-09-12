@@ -1,34 +1,28 @@
 import ExtraEquipmentSlots from './config.mjs';
 
-export class SetupArmorApi {
-  /**
-   * @param {Object} object 
-   */
-  SetupArmors(object) {
-    for (const [id, obj] of Object.entries(object)) {
-      CONFIG.DND5E.equipmentTypes[id] = obj.label;
-      CONFIG.DND5E.armorProficienciesMap[id] = obj.prof;
+globalThis.Deyzeria ||= {}
+globalThis.Deyzeria.SetupArmors = SetupArmors;
 
-      ExtraEquipmentSlots.ToProcess.push(
-        {
-          id: id,
-          label: obj.label,
-          category: obj.category
-        }
-      )
-    }
+function SetupArmors(object) {
+  for (const [id, obj] of Object.entries(object)) {
+    CONFIG.DND5E.equipmentTypes[id] = obj.label;
+    CONFIG.DND5E.armorProficienciesMap[id] = obj.prof;
+
+    ExtraEquipmentSlots.ToProcess.push(
+      {
+        id: id,
+        label: obj.label,
+        category: obj.category
+      }
+    )
   }
 }
 
 Hooks.once("init", () => {
-  const setupArmor = new SetupArmorApi;
-  globalThis.Deyzeria ||= {};
-  globalThis.Deyzeria.SetupArmors = setupArmor.SetupArmors;
-
   CONFIG.Deyzeria ||= {};
   CONFIG.Deyzeria.ExtraEquipmentSlotsCategories = ExtraEquipmentSlots.DefaultEquipmentCategories;
 
-  setupArmor.SetupArmors(ExtraEquipmentSlots.DefaultEquipmentSlots);
+  SetupArmors(ExtraEquipmentSlots.DefaultEquipmentSlots);
 });
 
 Hooks.once("ready", () => {
