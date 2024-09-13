@@ -1,0 +1,38 @@
+<form>
+  <div class="flexrow" style="align-items: flex-start;">
+    <div class="part newcategory">
+      <div class="title">{{localize "EQUIPMENTSLOTS.MENU.categories"}}</div>
+      <ol>
+        <li class="flexrow">
+          <span class="columnID">{{localize "EQUIPMENTSLOTS.MENU.columnID"}}</span>
+          <span class="columnName">{{localize "EQUIPMENTSLOTS.MENU.columnName"}}</span>
+          <span class="columnEnabled">{{localize "EQUIPMENTSLOTS.MENU.columnEnabled"}}</span>
+        </li>
+        {{#each categories as |category|}}
+        <li class="flexrow" data-id="{{category.name}}">
+          <input class="columnID" type="text" name="categories.{{category.name}}.name" value="{{category.name}}" {{category.disabled}} required="true">
+          <input class="columnName" type="text" name="categories.{{category.name}}.label" value="{{category.label}}" {{category.disabled}} required="true">
+          <input class="columnEnabled" type="checkbox" name="categories.{{category.name}}.value" {{category.enabled}}>
+          {{#if category.custom}}
+          <a class="columnDelete" data-action="delete-button">
+            <i class="fa-solid fa-trash"></i>
+          </a>
+          {{/if}}
+        </li>
+        {{/each}}
+        <button type="button" data-action="add-category">
+          <i class="fa-solid fa-plus"></i> {{localize "EQUIPMENTSLOTS.MENU.addNewCategory"}}
+        </button>
+      </ol>
+    </div>
+    <div class="part newitem">
+      <div class="title">{{localize "EQUIPMENTSLOTS.MENU.items"}}</div>
+    </div>
+  </div>
+
+  <footer class="flexrow submit-footer">
+    <button type="submit">
+      <i class="far fa-save"></i> {{localize "EQUIPMENTSLOTS.MENU.saveChanges"}}
+    </button>
+  </footer>
+</form>

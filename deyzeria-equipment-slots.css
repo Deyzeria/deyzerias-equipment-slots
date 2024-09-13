@@ -1,0 +1,78 @@
+.manualoverridemenu {
+
+}
+
+.manualoverridemenu .part {
+  border: 2px black solid;
+  margin: 0 5px;
+  padding: 5px;
+}
+
+.manualoverridemenu .newcategory {
+  flex: 1
+}
+
+.manualoverridemenu .newitem {
+  flex: 2
+}
+
+.manualoverridemenu .part .title {
+  font-size: large;
+}
+
+.manualoverridemenu .part ol {
+  padding: 0;
+}
+
+.manualoverridemenu .part ol li {
+  padding: 1px 0;
+  border-bottom: 1px black solid;
+}
+
+.manualoverridemenu .part ol li .columnID {
+  flex: 0 0 70px;
+  padding: 1px 3px;
+  margin-right: 1px;
+}
+
+.manualoverridemenu .part ol li input.columnID {
+  flex: 0 0 70px;
+  border-left: 1px black solid;
+  border-right: 1px black solid;
+  margin-right: 1px;
+}
+
+.manualoverridemenu .part ol li .columnName {
+  flex: 0 0 100px;
+  padding: 1px 3px;
+  margin: 0 1px;
+}
+
+.manualoverridemenu .part ol li input.columnName {
+  flex: 0 0 100px;
+  border-left: 1px black solid;
+  border-right: 1px black solid;
+  margin: 0 1px;
+}
+
+.manualoverridemenu .part ol li .columnEnabled {
+  flex: 0 0 30px;
+}
+
+.manualoverridemenu .part ol li .columnDelete {
+  flex: 0 0 10px;
+  padding-top: 4px;
+}
+
+.manualoverridemenu .part .add-button {
+  justify-content: end;
+}
+
+.manualoverridemenu .submit-footer {
+  padding-top: 10px;
+  justify-content: center;
+}
+
+.manualoverridemenu .submit-footer .submit-button {
+  flex: 0 0 200px;
+}

@@ -1,5 +1,5 @@
 import ExtraEquipmentSlots from './module/config.mjs';
-import registerModuleSettings from './module/settings.mjs';
+import registerModuleSettings, { MODULE } from './module/settings.mjs';
 
 globalThis.Deyzeria ||= {}
 globalThis.Deyzeria.SetupArmors = SetupArmors;
@@ -49,10 +49,10 @@ Hooks.once("i18nInit", function () {
 // Setups ExtraEquipmentSlots.Final for the further visual display
 function SetupFinalForVisual() {
   const toProcess = ExtraEquipmentSlots.ToProcess;
-  const categories = ExtraEquipmentSlots.DefaultEquipmentCategories;
+  const categories = game.settings.get(MODULE.id, MODULE.setting.categories);
   const final = [];
 
-  for (const [id, label] of Object.entries(categories)) {
+  for (const [id, obj] of Object.entries(categories)) {
     var typeUnfiltered = toProcess.filter(elem => elem.category === id);
     var typesFiltered = {};
     typeUnfiltered.forEach(element => {
@@ -60,11 +60,13 @@ function SetupFinalForVisual() {
     });
 
     final.push({
-      label: label,
+      label: obj.default ? ExtraEquipmentSlots.DefaultEquipmentCategories[id] : obj.label,
       types: typesFiltered
     });
   }
 
+  console.debug(categories);
+  console.debug(final);
   return final;
 }
 
