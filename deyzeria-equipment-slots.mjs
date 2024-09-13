@@ -5,12 +5,12 @@ import RegisterModuleSettings from './module/settings.mjs';
 globalThis.Deyzeria ||= {}
 globalThis.Deyzeria.SetupArmors = SetupArmors;
 
-function SetupArmors(object, hideDefaultSetting = false) {
+function SetupArmors(object, hideDefaultSetting = false, moduleAdded = true) {
   for (const [id, obj] of Object.entries(object)) {
     CONFIG.DND5E.equipmentTypes[id] = obj.label;
     CONFIG.DND5E.armorProficienciesMap[id] = obj.prof;
 
-    if (!hideDefaultSetting) {
+    if (!hideDefaultSetting || (!obj.default ?? true)) {
       ExtraEquipmentSlots.ToProcess.push(
         {
           id: id,
@@ -18,6 +18,17 @@ function SetupArmors(object, hideDefaultSetting = false) {
           category: obj.category
         }
       )
+    }
+
+    if (moduleAdded) {
+      ExtraEquipmentSlots.ModuleEquipmentSlots[id] = {
+        label: obj.label,
+        prof: obj.prof,
+        category: obj.category,
+        value: true,
+        default: false,
+        module: true
+      };
     }
   }
 }
@@ -27,8 +38,7 @@ Hooks.once("init", () => {
   CONFIG.Deyzeria ||= {};
   CONFIG.Deyzeria.ExtraEquipmentSlotsCategories = {};
 
-  const defaultArmorToSetup = game.settings.get(MODULE.id, MODULE.setting.items);
-  SetupArmors(defaultArmorToSetup, game.settings.get(MODULE.id, MODULE.setting.fulldisable));
+  SetupArmors(game.settings.get(MODULE.id, MODULE.setting.items), game.settings.get(MODULE.id, MODULE.setting.fulldisable), false);
 });
 
 Hooks.once("ready", () => {
@@ -42,17 +52,18 @@ Hooks.once("ready", () => {
 // Setups ExtraEquipmentSlots.Final for the further visual display
 function SetupFinalForVisual() {
   const toProcess = ExtraEquipmentSlots.ToProcess;
-  var categories = {};
-  if (!game.settings.get(MODULE.id, MODULE.setting.fulldisable)) {
-    categories = game.settings.get(MODULE.id, MODULE.setting.categories);
-  }
-  else {
-    categories = GetNonDefaultItems(game.settings.get(MODULE.id, MODULE.setting.categories));
-  }
-
+  var categories = game.settings.get(MODULE.id, MODULE.setting.categories);
+  const items = game.settings.get(MODULE.id, MODULE.setting.items);
   // Handling manually arriving categories
   for (const [id, label] of Object.entries(CONFIG.Deyzeria.ExtraEquipmentSlotsCategories)) {
-    categories[id] = { label: label };
+    categories[id] = { label: label, value: true, default: false, module: true };
+  }
+  for (const [id, obj] of Object.entries(ExtraEquipmentSlots.ModuleEquipmentSlots)) {
+    items[id] = obj;
+  }
+
+  if (game.settings.get(MODULE.id, MODULE.setting.fulldisable)) {
+    categories = GetNonDefaultItems(game.settings.get(MODULE.id, MODULE.setting.categories));
   }
 
   const final = [];

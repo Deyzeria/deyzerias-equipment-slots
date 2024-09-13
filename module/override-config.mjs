@@ -37,7 +37,8 @@ export default class ManualOverrideConfig extends FormApplication {
         name: name,
         label: game.i18n.localize(obj.label),
         enabled: obj.value,
-        default: obj.default,
+        module: obj?.module ?? false,
+        moduleordefault: obj.default || (obj?.module ?? false),
         hide: obj.default && hideDefault ? "hide" : ""
       });
     }
@@ -56,7 +57,8 @@ export default class ManualOverrideConfig extends FormApplication {
         category: obj.category,
         prof: typeof obj.prof === "boolean" ? "" : obj.prof,
         enabled: obj.value,
-        default: obj.default,
+        module: obj?.module ?? false,
+        moduleordefault: obj.default || (obj?.module ?? false),
         hide: obj.default && hideDefault ? "hide" : ""
       });
     }
@@ -92,7 +94,7 @@ export default class ManualOverrideConfig extends FormApplication {
         const categoryDropdown = foundry.applications.fields.createSelectInput({ options: this.CategoryDropdown, blank: "", sort: false, name: `items.${tempId}.category`, value: "" });
         $(categoryDropdown).addClass("largeSelect");
         newChild.append(categoryDropdown);
-        const profDropdown = foundry.applications.fields.createSelectInput({ options: this.ProfDropdown, blank: "", sort: false, name: `items.${tempId}.prof`, value: "" });
+        const profDropdown = foundry.applications.fields.createSelectInput({ options: this.ProfDropdown, blank: "Always", sort: false, name: `items.${tempId}.prof`, value: "" });
         newChild.append(profDropdown);
       }
 
@@ -133,6 +135,7 @@ export default class ManualOverrideConfig extends FormApplication {
           return [key, obj];
         })
     );
+    console.debug(newCategoryData);
     game.settings.set(MODULE.id, MODULE.setting.categories, newCategoryData);
 
     // Items

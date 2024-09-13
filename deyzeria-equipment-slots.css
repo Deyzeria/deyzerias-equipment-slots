@@ -48,9 +48,14 @@
   flex: 0 0 20px;
 }
 
+.manualoverridemenu .part ol li .module {
+  color: red;
+}
+
 .manualoverridemenu .part ol li .columnDelete {
   flex: 0 0 10px;
-  padding-top: 4px;
+  padding-top: 5px;
+  padding-left: 2px;
 }
 
 .manualoverridemenu .part ol li input[type="text"] {
@@ -58,6 +63,10 @@
   border-left: 1px black solid;
   border-right: 1px black solid;
   margin-right: 1px;
+}
+
+.manualoverridemenu .part ol li input[type="checkbox"] {
+  margin: 3px 2px;
 }
 
 .manualoverridemenu .part ol li .largeSelect {

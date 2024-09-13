@@ -53,7 +53,8 @@
       "columnName": "Name",
       "columnCategory": "Category",
       "columnProf": "Prof",
-      "columnEnabled": "Enabled"
+      "columnEnabled": "Enabled",
+      "moduleAdded": "Added by a module"
     }
   }
 }

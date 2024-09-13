@@ -10,14 +10,21 @@
         </li>
         {{#each categories as |category|}}
         <li class="flexrow {{category.hide}}" data-id="{{category.name}}">
-          <input type="text" name="categories.{{category.name}}.name" value="{{category.name}}" {{disabled category.default}} required="true">
-          <input type="text" name="categories.{{category.name}}.label" value="{{category.label}}" {{disabled category.default}} required="true">
-          <input class="columnEnabled" type="checkbox" name="categories.{{category.name}}.value" {{checked category.enabled}}>
-          {{#unless category.default}}
+          <input type="text" name="categories.{{category.name}}.name" value="{{category.name}}" {{disabled category.moduleordefault}} required="true"
+            placeholder="{{localize "EQUIPMENTSLOTS.MENU.columnID"}}">
+          <input type="text" name="categories.{{category.name}}.label" value="{{category.label}}" {{disabled category.moduleordefault}} required="true"
+            placeholder="{{localize "EQUIPMENTSLOTS.MENU.columnName"}}">
+          <input class="columnEnabled" type="checkbox" name="categories.{{category.name}}.value" {{disabled category.module}} {{checked category.enabled}}>
+          {{#unless category.moduleordefault}}
           <a class="columnDelete" data-action="delete-button">
             <i class="fa-solid fa-trash"></i>
           </a>
           {{/unless}}
+          {{#if category.module}}
+          <div class="columnDelete module">
+            <i class="fa-solid fa-toolbox" data-tooltip="EQUIPMENTSLOTS.MENU.moduleAdded"></i>
+          </div>
+          {{/if}}
         </li>
         {{/each}}
         <button type="button" data-action="add-button" data-type="categories">
@@ -37,20 +44,27 @@
         </li>
         {{#each items as |item|}}
         <li class="flexrow {{item.hide}}" data-id="{{item.name}}">
-          <input type="text" name="items.{{item.name}}.name" value="{{item.name}}" {{disabled item.default}} required="true">
-          <input type="text" name="items.{{item.name}}.label" value="{{item.label}}" {{disabled item.default}} required="true">
-          <select name="items.{{item.name}}.category" class="largeSelect" {{disabled item.default}}>
+          <input type="text" name="items.{{item.name}}.name" value="{{item.name}}" {{disabled item.moduleordefault}} required="true" 
+            placeholder="{{localize "EQUIPMENTSLOTS.MENU.columnID"}}">
+          <input type="text" name="items.{{item.name}}.label" value="{{item.label}}" {{disabled item.moduleordefault}} required="true"
+            placeholder="{{localize "EQUIPMENTSLOTS.MENU.columnName"}}">
+          <select name="items.{{item.name}}.category" class="largeSelect" {{disabled item.moduleordefault}}>
             {{selectOptions @root.categoryDropdown selected=item.category blank="" }}
           </select>
-          <select name="items.{{item.name}}.prof" {{disabled item.default}}>
-            {{selectOptions @root.profDropdown selected=item.prof blank=""}}
+          <select name="items.{{item.name}}.prof" {{disabled item.moduleordefault}}>
+            {{selectOptions @root.profDropdown selected=item.prof blank="Always"}}
           </select>
-          <input class="columnEnabled" type="checkbox" name="items.{{item.name}}.value" {{checked item.enabled}}>
-          {{#unless item.default}}
+          <input class="columnEnabled" type="checkbox" name="items.{{item.name}}.value" {{disabled item.module}} {{checked item.enabled}}>
+          {{#unless item.moduleordefault}}
           <a class="columnDelete" data-action="delete-button">
             <i class="fa-solid fa-trash"></i>
           </a>
           {{/unless}}
+          {{#if item.module}}
+          <div class="columnDelete module">
+            <i class="fa-solid fa-toolbox" data-tooltip="EQUIPMENTSLOTS.MENU.moduleAdded"></i>
+          </div>
+          {{/if}}
         </li>
         {{/each}}
         <button type="button" data-action="add-button" data-type="items">

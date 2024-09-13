@@ -43,6 +43,10 @@ ExtraEquipmentSlots.DefaultEquipmentCategories = {
 
 ExtraEquipmentSlots.ToProcess = [];
 
+ExtraEquipmentSlots.ModuleEquipmentSlots = {
+  
+}
+
 ExtraEquipmentSlots.DefaultEquipmentSlots = {
   clothhat: {
     label: "EQUIPMENTSLOTS.ITEM.clothhat",
