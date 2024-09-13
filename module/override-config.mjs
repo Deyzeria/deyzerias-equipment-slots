@@ -34,7 +34,7 @@ export default class ManualOverrideConfig extends FormApplication {
     context.categories = [];
     for (const [name, obj] of Object.entries(context.object.categories)) {
       context.categories.push({
-        name: name,
+        name: obj.name ?? name,
         label: game.i18n.localize(obj.label),
         enabled: obj.value,
         module: obj?.module ?? false,
@@ -52,7 +52,7 @@ export default class ManualOverrideConfig extends FormApplication {
     context.items = []
     for (const [name, obj] of Object.entries(context.object.items)) {
       context.items.push({
-        name: name,
+        name: obj.name ?? name,
         label: game.i18n.localize(obj.label),
         category: obj.category,
         prof: typeof obj.prof === "boolean" ? "" : obj.prof,
@@ -135,7 +135,6 @@ export default class ManualOverrideConfig extends FormApplication {
           return [key, obj];
         })
     );
-    console.debug(newCategoryData);
     game.settings.set(MODULE.id, MODULE.setting.categories, newCategoryData);
 
     // Items
@@ -157,9 +156,10 @@ export default class ManualOverrideConfig extends FormApplication {
               }
             ]
           }
-          return [key, obj];
+          return [obj.name ?? key, obj];
         })
     );
+    console.debug(newItemData);
     game.settings.set(MODULE.id, MODULE.setting.items, newItemData);
 
     return SettingsConfig.reloadConfirm({ world: true });
