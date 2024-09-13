@@ -37,8 +37,8 @@
         "hint": "Disables all the default item types added by the module. You can still add new ones manually using the Manual Additions menu or using API methods."
       },
       "MANUALADDITIONS": {
-        "name": "Manually configure specific types, disable existing ones or add new ones manually",
-        "hint": "Manual changes to the new item types and categories.",
+        "name": "Manual changes to the new item types and categories",
+        "hint": "Manually configure specific types, disable existing ones or add new ones manually.",
         "label": "Configure"
       }
     },
