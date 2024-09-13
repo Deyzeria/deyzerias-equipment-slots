@@ -5,20 +5,19 @@ import RegisterModuleSettings from './module/settings.mjs';
 globalThis.Deyzeria ||= {}
 globalThis.Deyzeria.SetupArmors = SetupArmors;
 
-function SetupArmors(object) {
-  const hideDefault = game.settings.get(MODULE.id, MODULE.setting.fulldisable);
+function SetupArmors(object, hideDefaultSetting = false) {
   for (const [id, obj] of Object.entries(object)) {
     CONFIG.DND5E.equipmentTypes[id] = obj.label;
     CONFIG.DND5E.armorProficienciesMap[id] = obj.prof;
 
-    if (!hideDefault) {
+    if (!hideDefaultSetting) {
       ExtraEquipmentSlots.ToProcess.push(
         {
           id: id,
           label: obj.label,
           category: obj.category
         }
-      )  
+      )
     }
   }
 }
@@ -29,13 +28,13 @@ Hooks.once("init", () => {
   CONFIG.Deyzeria.ExtraEquipmentSlotsCategories = {};
 
   const defaultArmorToSetup = game.settings.get(MODULE.id, MODULE.setting.items);
-  SetupArmors(defaultArmorToSetup);
+  SetupArmors(defaultArmorToSetup, game.settings.get(MODULE.id, MODULE.setting.fulldisable));
 });
 
 Hooks.once("ready", () => {
   ExtraEquipmentSlots.Final = SetupFinalForVisual();
 
-  // This will sit here until better/worse days
+  // This will sit here until better/worse days. This is a verrrry manual hard-reset
   // game.settings.set(MODULE.id, MODULE.setting.items, ExtraEquipmentSlots.DefaultEquipmentSlots);
   // game.settings.set(MODULE.id, MODULE.setting.categories, ExtraEquipmentSlots.DefaultEquipmentCategories);
 });
@@ -50,6 +49,12 @@ function SetupFinalForVisual() {
   else {
     categories = GetNonDefaultItems(game.settings.get(MODULE.id, MODULE.setting.categories));
   }
+
+  // Handling manually arriving categories
+  for (const [id, label] of Object.entries(CONFIG.Deyzeria.ExtraEquipmentSlotsCategories)) {
+    categories[id] = { label: label };
+  }
+
   const final = [];
 
   for (const [id, obj] of Object.entries(categories)) {

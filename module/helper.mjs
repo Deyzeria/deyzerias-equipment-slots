@@ -1,4 +1,3 @@
-// TODO: Check for NULL
 export function GetNonDefaultItems(object) {
   return Object.fromEntries(
     Object.entries(object)
