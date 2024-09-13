@@ -1,4 +1,5 @@
-import ExtraEquipmentSlots from './config.mjs';
+import ExtraEquipmentSlots from './module/config.mjs';
+import registerModuleSettings from './module/settings.mjs';
 
 globalThis.Deyzeria ||= {}
 globalThis.Deyzeria.SetupArmors = SetupArmors;
@@ -19,10 +20,14 @@ function SetupArmors(object) {
 }
 
 Hooks.once("init", () => {
+  registerModuleSettings();
   CONFIG.Deyzeria ||= {};
   CONFIG.Deyzeria.ExtraEquipmentSlotsCategories = ExtraEquipmentSlots.DefaultEquipmentCategories;
 
-  SetupArmors(ExtraEquipmentSlots.DefaultEquipmentSlots);
+  if (!game.settings.get("deyzerias-equipment-slots", "fulldisable"))
+  {
+    SetupArmors(ExtraEquipmentSlots.DefaultEquipmentSlots);
+  }
 });
 
 Hooks.once("ready", () => {
