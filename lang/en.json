@@ -34,10 +34,10 @@
     "SETTINGS": {
       "FULLDISABLE": {
         "name": "Disable all default additions",
-        "hint": "Disables all the default item types added by the module. Is used mostly if you intent to only use the module as an API from scratch. For a more manual change, use the other setting."
+        "hint": "Disables all the default item types added by the module. You can still add new ones manually using the Manual Additions menu or using API methods."
       },
       "MANUALADDITIONS": {
-        "name": "Configure specific types, remove and add new ones manually",
+        "name": "Manually configure specific types, disable existing ones or add new ones manually",
         "hint": "Manual changes to the new item types and categories.",
         "label": "Configure"
       }
@@ -51,6 +51,8 @@
       "saveChanges": "Save Changes",
       "columnID": "ID",
       "columnName": "Name",
+      "columnCategory": "Category",
+      "columnProf": "Prof",
       "columnEnabled": "Enabled"
     }
   }

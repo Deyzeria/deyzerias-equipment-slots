@@ -4,29 +4,59 @@
       <div class="title">{{localize "EQUIPMENTSLOTS.MENU.categories"}}</div>
       <ol>
         <li class="flexrow">
-          <span class="columnID">{{localize "EQUIPMENTSLOTS.MENU.columnID"}}</span>
-          <span class="columnName">{{localize "EQUIPMENTSLOTS.MENU.columnName"}}</span>
+          <span class="columnTitle">{{localize "EQUIPMENTSLOTS.MENU.columnID"}}</span>
+          <span class="columnTitle">{{localize "EQUIPMENTSLOTS.MENU.columnName"}}</span>
           <span class="columnEnabled">{{localize "EQUIPMENTSLOTS.MENU.columnEnabled"}}</span>
         </li>
         {{#each categories as |category|}}
-        <li class="flexrow" data-id="{{category.name}}">
-          <input class="columnID" type="text" name="categories.{{category.name}}.name" value="{{category.name}}" {{category.disabled}} required="true">
-          <input class="columnName" type="text" name="categories.{{category.name}}.label" value="{{category.label}}" {{category.disabled}} required="true">
-          <input class="columnEnabled" type="checkbox" name="categories.{{category.name}}.value" {{category.enabled}}>
-          {{#if category.custom}}
+        <li class="flexrow {{category.hide}}" data-id="{{category.name}}">
+          <input type="text" name="categories.{{category.name}}.name" value="{{category.name}}" {{disabled category.default}} required="true">
+          <input type="text" name="categories.{{category.name}}.label" value="{{category.label}}" {{disabled category.default}} required="true">
+          <input class="columnEnabled" type="checkbox" name="categories.{{category.name}}.value" {{checked category.enabled}}>
+          {{#unless category.default}}
           <a class="columnDelete" data-action="delete-button">
             <i class="fa-solid fa-trash"></i>
           </a>
-          {{/if}}
+          {{/unless}}
         </li>
         {{/each}}
-        <button type="button" data-action="add-category">
+        <button type="button" data-action="add-button" data-type="categories">
           <i class="fa-solid fa-plus"></i> {{localize "EQUIPMENTSLOTS.MENU.addNewCategory"}}
         </button>
       </ol>
     </div>
     <div class="part newitem">
       <div class="title">{{localize "EQUIPMENTSLOTS.MENU.items"}}</div>
+      <ol>
+        <li class="flexrow">
+          <span class="columnTitle">{{localize "EQUIPMENTSLOTS.MENU.columnID"}}</span>
+          <span class="columnTitle">{{localize "EQUIPMENTSLOTS.MENU.columnName"}}</span>
+          <span class="largeSelect">{{localize "EQUIPMENTSLOTS.MENU.columnCategory"}}</span>
+          <span class="columnTitle">{{localize "EQUIPMENTSLOTS.MENU.columnProf"}}</span>
+          <span class="columnEnabled">{{localize "EQUIPMENTSLOTS.MENU.columnEnabled"}}</span>
+        </li>
+        {{#each items as |item|}}
+        <li class="flexrow {{item.hide}}" data-id="{{item.name}}">
+          <input type="text" name="items.{{item.name}}.name" value="{{item.name}}" {{disabled item.default}} required="true">
+          <input type="text" name="items.{{item.name}}.label" value="{{item.label}}" {{disabled item.default}} required="true">
+          <select name="items.{{item.name}}.category" class="largeSelect" {{disabled item.default}}>
+            {{selectOptions @root.categoryDropdown selected=item.category blank="" }}
+          </select>
+          <select name="items.{{item.name}}.prof" {{disabled item.default}}>
+            {{selectOptions @root.profDropdown selected=item.prof blank=""}}
+          </select>
+          <input class="columnEnabled" type="checkbox" name="items.{{item.name}}.value" {{checked item.enabled}}>
+          {{#unless item.default}}
+          <a class="columnDelete" data-action="delete-button">
+            <i class="fa-solid fa-trash"></i>
+          </a>
+          {{/unless}}
+        </li>
+        {{/each}}
+        <button type="button" data-action="add-button" data-type="items">
+          <i class="fa-solid fa-plus"></i> {{localize "EQUIPMENTSLOTS.MENU.addNewItem"}}
+        </button>
+      </ol>
     </div>
   </div>
 

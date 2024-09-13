@@ -1,5 +1,5 @@
 .manualoverridemenu {
-
+  height: auto !important;
 }
 
 .manualoverridemenu .part {
@@ -22,6 +22,7 @@
 
 .manualoverridemenu .part ol {
   padding: 0;
+  margin: 0;
 }
 
 .manualoverridemenu .part ol li {
@@ -29,39 +30,47 @@
   border-bottom: 1px black solid;
 }
 
-.manualoverridemenu .part ol li .columnID {
-  flex: 0 0 70px;
-  padding: 1px 3px;
-  margin-right: 1px;
+.manualoverridemenu .part ol li.hide {
+  display: none;
 }
 
-.manualoverridemenu .part ol li input.columnID {
-  flex: 0 0 70px;
-  border-left: 1px black solid;
-  border-right: 1px black solid;
-  margin-right: 1px;
+.manualoverridemenu .part ol li span {
+  font-size: 10px;
 }
 
-.manualoverridemenu .part ol li .columnName {
+.manualoverridemenu .part ol li .columnTitle {
   flex: 0 0 100px;
   padding: 1px 3px;
-  margin: 0 1px;
-}
-
-.manualoverridemenu .part ol li input.columnName {
-  flex: 0 0 100px;
-  border-left: 1px black solid;
-  border-right: 1px black solid;
-  margin: 0 1px;
+  margin-right: 1px;
 }
 
 .manualoverridemenu .part ol li .columnEnabled {
-  flex: 0 0 30px;
+  flex: 0 0 20px;
 }
 
 .manualoverridemenu .part ol li .columnDelete {
   flex: 0 0 10px;
   padding-top: 4px;
+}
+
+.manualoverridemenu .part ol li input[type="text"] {
+  flex: 0 0 100px;
+  border-left: 1px black solid;
+  border-right: 1px black solid;
+  margin-right: 1px;
+}
+
+.manualoverridemenu .part ol li .largeSelect {
+  flex: 0 0 140px;
+  max-width: 140px;
+  width: 140px;
+}
+.manualoverridemenu .part ol li select {
+  flex: 0 0 100px;
+  max-width: 100px;
+  width: 100px;
+  padding: 1px 3px;
+  margin: 0 1px;
 }
 
 .manualoverridemenu .part .add-button {
