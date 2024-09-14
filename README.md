@@ -1,6 +1,6 @@
 # deyzerias-equipment-slots
 DnD5e module which adds basic equipment slots on top of the existing 5e armor, which don't provide AC. Adds (For each armor type + clothing)- hats, gloves, legs, boots, as well as accessories- rings, necklaces, face and back slots.
-![image](https://github.com/user-attachments/assets/ed2db47e-3508-485d-a311-b51455f4f366)
+![image](https://github.com/user-attachments/assets/81892de9-ce4f-46ba-b61b-730d06b4126a)
 
 ## Now allows manual editing
 ![image](https://github.com/user-attachments/assets/539dab03-96bf-4dac-bc9a-a8e7a8956253)
