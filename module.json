@@ -1,7 +1,7 @@
 {
   "id": "deyzerias-equipment-slots",
   "title": "Deyzeria's Equipment Slots",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "compatibility": {
     "minimum": "12",
     "verified": "12"
@@ -34,6 +34,20 @@
   "languages": [
     { "lang": "en", "name": "English", "path": "lang/en.json" },
     { "lang": "ru", "name": "Русский", "path": "lang/ru.json" }
+  ],
+  "packs": [
+    {
+      "name": "converted-srd",
+      "label": "Converted SRD equipment",
+      "path": "packs/converted-srd",
+      "type": "Item",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "system": "dnd5e",
+      "flags": {}
+    }
   ],
   "manifest": "https://raw.githubusercontent.com/Deyzeria/deyzerias-equipment-slots/master/module.json",
   "url": "https://github.com/Deyzeria/deyzerias-equipment-slots",
