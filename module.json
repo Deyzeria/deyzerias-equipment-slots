@@ -47,6 +47,18 @@
       },
       "system": "dnd5e",
       "flags": {}
+    },
+    {
+      "name": "example-items",
+      "label": "Example Item Slots",
+      "path": "packs/example-items",
+      "type": "Item",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "system": "dnd5e",
+      "flags": {}
     }
   ],
   "manifest": "https://raw.githubusercontent.com/Deyzeria/deyzerias-equipment-slots/master/module.json",
