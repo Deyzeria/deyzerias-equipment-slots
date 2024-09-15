@@ -1,7 +1,7 @@
 {
   "id": "deyzerias-equipment-slots",
   "title": "Deyzeria's Equipment Slots",
-  "version": "1.2.0",
+  "version": "1.4.0",
   "compatibility": {
     "minimum": "12",
     "verified": "12"
@@ -12,7 +12,7 @@
         "id": "dnd5e",
         "type": "system",
         "compatibility": {
-          "minimum": "3.0.0",
+          "minimum": "4.0.0",
           "verified": "4.0.0"
         }
       }
