@@ -17,7 +17,7 @@ const foo = {
   bar1: {
     label: "Label 1",
     prof: "lgt", // Supports either flat boolean true (for equipment you are always proficient in) or proficiency types- 'lgt'/'med'/'hvy'
-    category: "newcategory" // Either use one of the existing category id's- helmet, pants, gloves, bootes, extraslots or add extra ones as will be described afterwards
+    category: "newcategory" // Either use one of the existing category id's- helmet, pants, gloves, boots, extraslots or add extra ones as will be described afterwards
   },
   bar2: {
     label: "Label 2",
