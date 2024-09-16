@@ -32,3 +32,24 @@ If you want to add an extra category, on `setup` add the new categories to the n
 ```javascript
 CONFIG.Deyzeria.ExtraEquipmentSlotsCategories.newcategory = "New Category";
 ```
+
+## Paper Doll Custom Filters
+Initially this module was made under the inspiration of Paper Doll from TheRipper and to work with it. You can(And should!) get the module here - https://foundryvtt.com/packages/fvtt-paper-doll-ui
+
+It allows to set custom filters in slots, and this was the initial inspiration for me making this module.
+
+For the slots which allow several items, these are the premades
+```javascript
+// Hat-
+return ['clothhat', 'lighthat', 'mediumhat', 'heavyhat'].includes(item.system.type.value);
+// Gloves-
+return ['clothhands', 'lighthands', 'mediumhands', 'heavyhands'].includes(item.system.type.value);
+// Pants-
+return ['clothpants', 'lightpants', 'mediumpants', 'heavypants'].includes(item.system.type.value);
+// Boots-
+return ['clothboots', 'lightboots', 'mediumboots', 'heavyboots'].includes(item.system.type.value);
+
+// Any other slot can be simply defined directly-
+return item.system.type.value == 'whatever';
+// You can see specific ID's in the module setting menu
+```
