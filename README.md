@@ -1,5 +1,6 @@
 # Deyzeria's Equipment Slots
 DnD5e module which adds basic equipment slots on top of the existing 5e armor, which don't provide AC. Adds (For each armor type + clothing)- hats, gloves, legs, boots, as well as accessories- rings, necklaces, face and back slots.
+
 ![image](https://github.com/user-attachments/assets/81892de9-ce4f-46ba-b61b-730d06b4126a)
 
 ## Module comes with pre-changed SRD items in a separate compendium
