@@ -77,13 +77,6 @@ ExtraEquipmentSlots.DefaultEquipmentSlots = {
     default: true
   },
 
-  ring: {
-    label: "EQUIPMENTSLOTS.ITEM.ring",
-    prof: true,
-    category: "extraslots",
-    value: true,
-    default: true
-  },
   neck: {
     label: "EQUIPMENTSLOTS.ITEM.neck",
     prof: true,
