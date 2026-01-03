@@ -1,38 +1,63 @@
 import { MODULE } from "./config.mjs";
 import { GetCategories, GetNonDefaultItems } from "./helper.mjs";
+const { ApplicationV2, DialogV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
-export default class ManualOverrideConfig extends FormApplication {
+const PATH = "modules/deyzerias-equipment-slots/templates";
+
+export default class ManualOverrideConfig extends HandlebarsApplicationMixin(ApplicationV2) {
   /** @inheritdoc */
-  constructor(object = {}, options = {}) {
-    object = foundry.utils.mergeObject({
-      categories: game.settings.get(MODULE.id, MODULE.setting.categories),
-      items: game.settings.get(MODULE.id, MODULE.setting.items)
-    }, object, { inplace: false });
-    super(object, options);
+  constructor(options = {}) {
+    super(options);
+    this.defaultCategories = game.settings.get(MODULE.id, MODULE.setting.categories);
+    this.defaultItems = game.settings.get(MODULE.id, MODULE.setting.items);
+    return this;
   }
 
   static CategoryDropdown = {};
   static ProfDropdown = {};
 
-  static get defaultOptions() {
-    return foundry.utils.mergeObject(super.defaultOptions, {
-      title: game.i18n.localize("EQUIPMENTSLOTS.MENU.title"),
-      classes: [MODULE.id, MODULE.menu],
-      id: MODULE.menu,
-      template: "modules/deyzerias-equipment-slots/templates/manual-override-config.hbs",
-      popOut: true,
-      width: 800,
+  static DEFAULT_OPTIONS = {
+    id: MODULE.menu,
+    tag: "form",
+    window: {
+      title: "EQUIPMENTSLOTS.MENU.title",
+      contentClasses: [MODULE.id, MODULE.menu]
+    },
+    position: {
+      width: 805,
       height: "auto"
-    });
+    },
+    form: {
+      // closeOnSubmit: true,
+      handler: this.#onSubmit
+    },
+    actions: {
+      addButton: this.#addButton,
+      addCategory: this.#addButtonCategory,
+      deleteButton: this.#deleteButton
+    }
   }
 
-  getData(options = {}) {
-    const context = super.getData(options);
+  static PARTS = {
+    body: {
+      template: `${PATH}/manual-override-config.hbs`
+    },
+    footer: {
+      template: `${PATH}/footer.hbs`
+    }
+  }
 
+  get title() {
+    return game.i18n.localize("EQUIPMENTSLOTS.MENU.title");
+  }
+
+
+  async _prepareContext(options = {}) {
     const hideDefault = game.settings.get(MODULE.id, MODULE.setting.fulldisable);
+    let context = {};
 
     context.categories = [];
-    for (const [name, obj] of Object.entries(context.object.categories)) {
+    for (const [name, obj] of Object.entries(this.defaultCategories)) {
       context.categories.push({
         name: obj.name ?? name,
         label: game.i18n.localize(obj.label),
@@ -43,14 +68,14 @@ export default class ManualOverrideConfig extends FormApplication {
       });
     }
 
-    const categories = hideDefault ? GetNonDefaultItems(context.object.categories) : context.object.categories;
+    const categories = hideDefault ? GetNonDefaultItems(this.defaultCategories) : this.defaultCategories;
     this.CategoryDropdown = context.categoryDropdown = GetCategories(categories, true, true);
     const arProf = CONFIG.DND5E.armorProficiencies;
     delete arProf.shl;
     this.ProfDropdown = context.profDropdown = GetCategories(arProf, false);
 
     context.items = []
-    for (const [name, obj] of Object.entries(context.object.items)) {
+    for (const [name, obj] of Object.entries(this.defaultItems)) {
       context.items.push({
         name: obj.name ?? name,
         label: game.i18n.localize(obj.label),
@@ -62,52 +87,39 @@ export default class ManualOverrideConfig extends FormApplication {
         hide: obj.default && hideDefault ? "hide" : ""
       });
     }
-    console.debug(context);
+
+    context = foundry.utils.mergeObject(await super._prepareContext(options), context, { inplace: false });
+
     return context;
   }
 
-  activateListeners(html) {
-    super.activateListeners(html);
-    html.on("click", "[data-action]", this._onAction.bind(this));
+  static async #addButton(event, target) {
   }
 
-  _onAction(event) {
-    const action = event.currentTarget.dataset.action;
-    if (action == "add-button") {
-      const type = event.currentTarget.dataset.type;
-
-      const lastChild = $(event.currentTarget).parent().find("[data-id]").last();
-      const tempId = foundry.utils.randomID(8);
-
-      const inputSettings = {
-        required: true,
-        value: ""
-      }
-
-      const newChild = $(`<li class="flexrow" data-id="${tempId}"></li>`);
-      const nameInput = foundry.applications.fields.createTextInput({ ...inputSettings, name: `${type}.${tempId}.name` });
-      newChild.append(nameInput);
-      const labelInput = foundry.applications.fields.createTextInput({ ...inputSettings, name: `${type}.${tempId}.label` });
-      newChild.append(labelInput);
-
-      if (type == "items") {
-        const categoryDropdown = foundry.applications.fields.createSelectInput({ options: this.CategoryDropdown, blank: "", sort: false, name: `items.${tempId}.category`, value: "" });
-        $(categoryDropdown).addClass("largeSelect");
-        newChild.append(categoryDropdown);
-        const profDropdown = foundry.applications.fields.createSelectInput({ options: this.ProfDropdown, blank: "Always", sort: false, name: `items.${tempId}.prof`, value: "" });
-        newChild.append(profDropdown);
-      }
-
-      const checkboxInput = foundry.applications.fields.createCheckboxInput({ name: `${type}.${tempId}.value` });
-      checkboxInput.checked = true
-      newChild.append(checkboxInput);
-      const deleteButton = $(`<a class="columnDelete" data-action="delete-button"><i class="fa-solid fa-trash"></i></a>`)
-      newChild.append(deleteButton);
-      lastChild.after(newChild);
+  static async #addButtonCategory(event, target) {
+    const form = this.element;
+    let currentCategories = [];
+    if (form) {
+      const formData = new foundry.applications.ux.FormDataExtended(form);
+      const data = foundry.utils.expandObject(formData.object);
+      currentCategories = data.categories ? Object.values(data.categories).filter((c) => c && c.name) : [];
+    } else {
+      currentCategories = game.settings.get(MODULE.id, MODULE.setting.categories) || [];
     }
-    if (action == "delete-button") {
-      $(event.currentTarget).parent().remove();
-    }
+    currentCategories.push({ name: foundry.utils.randomID(), label: "New Category", enabled: true, module: false, moduleordefault: false });
+    // await game.settings.set(MODULE.id, MODULE.setting.categories, currentCategories); // I would prefer to only run an update on Submit, but probably can change to real time too? 
+    this.render();
+  }
+
+  static #deleteButton(event, target) {
+    // $(target).parent().remove();
+  }
+
+  static async #onSubmit(event, form, formData) {
+    let output = formData;
+
+    console.debug(form, formData);
+    // foundry.applications.settings.SettingsConfig.reloadConfirm({ world: true });
   }
 
   async _updateObject(event, formData) {
@@ -162,6 +174,6 @@ export default class ManualOverrideConfig extends FormApplication {
     console.debug(newItemData);
     game.settings.set(MODULE.id, MODULE.setting.items, newItemData);
 
-    return SettingsConfig.reloadConfirm({ world: true });
+    return foundry.applications.settings.SettingsConfig.reloadConfirm({ world: true });
   }
 }

@@ -1,7 +1,7 @@
 <form>
   <div class="flexrow" style="align-items: flex-start;">
-    <div class="part newcategory">
-      <div class="title">{{localize "EQUIPMENTSLOTS.MENU.categories"}}</div>
+    <fieldset class="part newcategory">
+      <span class="title">{{localize "EQUIPMENTSLOTS.MENU.categories"}}</span>
       <ol>
         <li class="flexrow">
           <span class="columnTitle">{{localize "EQUIPMENTSLOTS.MENU.columnID"}}</span>
@@ -9,14 +9,12 @@
           <span class="columnEnabled">{{localize "EQUIPMENTSLOTS.MENU.columnEnabled"}}</span>
         </li>
         {{#each categories as |category|}}
-        <li class="flexrow {{category.hide}}" data-id="{{category.name}}">
-          <input type="text" name="categories.{{category.name}}.name" value="{{category.name}}" {{disabled category.moduleordefault}} required="true"
-            placeholder="{{localize "EQUIPMENTSLOTS.MENU.columnID"}}">
-          <input type="text" name="categories.{{category.name}}.label" value="{{category.label}}" {{disabled category.moduleordefault}} required="true"
-            placeholder="{{localize "EQUIPMENTSLOTS.MENU.columnName"}}">
-          <input class="columnEnabled" type="checkbox" name="categories.{{category.name}}.value" {{disabled category.module}} {{checked category.enabled}}>
+        <li class="flexrow {{category.hide}}" data-category-id="{{category.name}}">
+          <input type="text" name="categories.{{category.name}}.name" value="{{category.name}}" data-dtype="String" {{disabled category.moduleordefault}} required="true" placeholder="{{localize "EQUIPMENTSLOTS.MENU.columnID"}}">
+          <input type="text" name="categories.{{category.name}}.label" value="{{category.label}}" data-dtype="String" {{disabled category.moduleordefault}} required="true" placeholder="{{localize "EQUIPMENTSLOTS.MENU.columnName"}}">
+          <input class="columnEnabled" type="checkbox" name="categories.{{category.name}}.value" data-dtype="Boolean" {{disabled category.module}} {{checked category.enabled}}>
           {{#unless category.moduleordefault}}
-          <a class="columnDelete" data-action="delete-button">
+          <a class="columnDelete" data-action="deleteButton" data-category-id="{{category.name}}">
             <i class="fa-solid fa-trash"></i>
           </a>
           {{/unless}}
@@ -27,11 +25,11 @@
           {{/if}}
         </li>
         {{/each}}
-        <button type="button" data-action="add-button" data-type="categories">
+        <button type="button" data-action="addCategory" data-type="categories">
           <i class="fa-solid fa-plus"></i> {{localize "EQUIPMENTSLOTS.MENU.addNewCategory"}}
         </button>
       </ol>
-    </div>
+    </fieldset>
     <div class="part newitem">
       <div class="title">{{localize "EQUIPMENTSLOTS.MENU.items"}}</div>
       <ol>
@@ -44,10 +42,8 @@
         </li>
         {{#each items as |item|}}
         <li class="flexrow {{item.hide}}" data-id="{{item.name}}">
-          <input type="text" name="items.{{item.name}}.name" value="{{item.name}}" {{disabled item.moduleordefault}} required="true" 
-            placeholder="{{localize "EQUIPMENTSLOTS.MENU.columnID"}}">
-          <input type="text" name="items.{{item.name}}.label" value="{{item.label}}" {{disabled item.moduleordefault}} required="true"
-            placeholder="{{localize "EQUIPMENTSLOTS.MENU.columnName"}}">
+          <input type="text" name="items.{{item.name}}.name" value="{{item.name}}" {{disabled item.moduleordefault}} required="true" placeholder="{{localize "EQUIPMENTSLOTS.MENU.columnID"}}">
+          <input type="text" name="items.{{item.name}}.label" value="{{item.label}}" {{disabled item.moduleordefault}} required="true" placeholder="{{localize "EQUIPMENTSLOTS.MENU.columnName"}}">
           <select name="items.{{item.name}}.category" class="largeSelect" {{disabled item.moduleordefault}}>
             {{selectOptions @root.categoryDropdown selected=item.category blank="" }}
           </select>
@@ -56,7 +52,7 @@
           </select>
           <input class="columnEnabled" type="checkbox" name="items.{{item.name}}.value" {{disabled item.module}} {{checked item.enabled}}>
           {{#unless item.moduleordefault}}
-          <a class="columnDelete" data-action="delete-button">
+          <a class="columnDelete" data-action="deleteButton">
             <i class="fa-solid fa-trash"></i>
           </a>
           {{/unless}}
@@ -67,16 +63,10 @@
           {{/if}}
         </li>
         {{/each}}
-        <button type="button" data-action="add-button" data-type="items">
+        <button type="button" data-action="addButton" data-type="items">
           <i class="fa-solid fa-plus"></i> {{localize "EQUIPMENTSLOTS.MENU.addNewItem"}}
         </button>
       </ol>
     </div>
   </div>
-
-  <footer class="flexrow submit-footer">
-    <button type="submit">
-      <i class="far fa-save"></i> {{localize "EQUIPMENTSLOTS.MENU.saveChanges"}}
-    </button>
-  </footer>
 </form>

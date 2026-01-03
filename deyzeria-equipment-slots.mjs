@@ -44,6 +44,9 @@ Hooks.once("init", () => {
 Hooks.once("ready", () => {
   ExtraEquipmentSlots.Final = SetupFinalForVisual();
 
+  // game.settings.set(MODULE.id, MODULE.setting.categories, ExtraEquipmentSlots.DefaultEquipmentCategories);
+
+
   // This will sit here until better/worse days. This is a verrrry manual hard-reset
   // game.settings.set(MODULE.id, MODULE.setting.items, ExtraEquipmentSlots.DefaultEquipmentSlots);
   // game.settings.set(MODULE.id, MODULE.setting.categories, ExtraEquipmentSlots.DefaultEquipmentCategories);
@@ -92,16 +95,14 @@ Hooks.on("renderItemSheet5e", (app, html, data) => {
 
 // Default Item Sheet
 function SetupArmorChoice(html, data) {
-  if (!html.hasClass("tidy5e-sheet")) {
-    var choiceList = html.find(".details").find('.form-group [name="system.type.value"]');
-    ExtraEquipmentSlots.Final.forEach(element => {
-      let choices = $(`<optgroup label="${element.label}"></optgroup>`);
-      for (const [armor, name] of Object.entries(element.types)) {
-        choices.append(`<option value="${armor}" ${data.system.type.value == armor ? 'selected' : ''}>${name}</option>`);
-      }
-      choiceList.append(choices);
-    });
-  }
+  var choiceList = $(html).find(".details").find('.form-group [name="system.type.value"]');
+  ExtraEquipmentSlots.Final.forEach(element => {
+    let choices = $(`<optgroup label="${element.label}"></optgroup>`);
+    for (const [armor, name] of Object.entries(element.types)) {
+      choices.append(`<option value="${armor}" ${data.system.type.value == armor ? 'selected' : ''}>${name}</option>`);
+    }
+    choiceList.append(choices);
+  });
 }
 
 // Tidy item sheet
